@@ -1,0 +1,30 @@
+
+<IfModule mod_headers.c>
+    Header add Access-Control-Max-Age 1728000
+    Header add Access-Control-Allow-Origin "*"
+    Header add Access-Control-Allow-Methods "GET,POST,OPTIONS,DELETE,PUT,PATCH"
+    Header add Access-Control-Allow-Headers "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,access-control-allow-methods, access-control-allow-origin, content-type,Content-Type, guid, token, x-auth-token, x-token, accept"
+    Header add Access-Control-Allow-Credentials true
+    header add Access-Control-Expose-Headers  "X-Token, guid"
+</IfModule>
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>

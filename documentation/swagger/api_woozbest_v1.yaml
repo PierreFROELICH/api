@@ -1,0 +1,1880 @@
+swagger: "2.0"
+info:
+  description: "API doc de Woozbest"
+  version: "1.0.0"
+  title: "Woozbest"
+  #termsOfService: "#"
+  contact:
+    email: "moshi@moshi.fr"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "api.wooz.best"
+basePath: "/"
+tags:
+  - name: user
+    description: "Utilisateurs & Utilisateur vedette"
+  - name: "follower"
+  - name: "following"
+  - name: "best"
+  - name: "top"
+  - name: "flux"
+
+schemes:
+  - "https"
+paths:
+  /user/check_login:
+    get:
+      tags:
+        - "user"
+      summary: "Check if user is connected"
+      operationId: "checkLogin"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+      responses:
+        200:
+          description: "successfull operation"
+        401:
+          description: "Invalid guid/token supplied"
+  /user/login:
+    post:
+      tags:
+        - "user"
+      summary: "Logs user into the system"
+      operationId: "login"
+      consumes:
+        - "application/x-www-form-urlencoded"
+      produces:
+        - "application/json"
+
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: username
+          in: formData
+          type: string
+          description: "The user name for login"
+          required: true
+        - name: password
+          in: formData
+          type: string
+          description: "The user name for login"
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+          headers:
+            X-Token:
+              type: "string"
+              description: "session token"
+        400:
+          description: "Invalid username/password supplied"
+  /user/logout:
+    patch:
+      tags:
+        - "user"
+      summary: "Logs out current logged in user session"
+      description: ""
+      operationId: "logout"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+      responses:
+        200:
+          description: "successfull operation"
+        401:
+          description: "Unauthorized."
+  /user/{username}:
+    get:
+      tags:
+        - "user"
+      summary: "Get user by user name"
+      operationId: "getUser"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "username"
+          in: "path"
+          description: "The name that needs to be fetched. Use user1 for testing. "
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        401:
+          description: "Unauthorized."
+        404:
+          description: "User not found"
+
+  /user/follow/{username}:
+    post:
+      tags:
+        - "user"
+      summary: "Add a folowing"
+      operationId: "followUser"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "username"
+          in: "path"
+          description: "The name to follow"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        401:
+          description: "Unauthorized."
+        404:
+          description: "User not found"
+    delete:
+      tags:
+        - "user"
+      summary: "remove a folowing"
+      operationId: "unfollowUser"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "username"
+          in: "path"
+          description: "The name to unfollow"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        401:
+          description: "Unauthorized."
+        404:
+          description: "User not found"
+  /user:
+    post:
+      tags:
+        - "user"
+      summary: "Inscription d'un utilisateur"
+      operationId: "createUser"
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: username
+          in: formData
+          type: string
+          description: "The user name for login"
+          required: true
+        - name: email
+          in: formData
+          type: string
+          description: "The email"
+          required: true
+        - name: password
+          in: formData
+          type: string
+          description: "The password"
+          required: true
+        - name: firstName
+          in: formData
+          type: string
+          description: "The firstname"
+          required: false
+        - name: lastName
+          in: formData
+          type: string
+          description: "The lastname"
+          required: false
+        - name: phone
+          in: formData
+          type: string
+          description: "The phone number"
+          required: false
+        - name: latitude
+          in: formData
+          type: number
+        - name: longitude
+          in: formData
+          type: number
+        - name: place
+          in: formData
+          type: string
+        - name: address
+          in: formData
+          type: string
+        - name: file
+          in: formData
+          type: file
+          description : "the avatar"
+        - name: url
+          in: formData
+          type: string
+          description: "url de l'avatar si dans bibliotheque (url ou fichier)"
+          required: false
+        - name:  tags
+            in: string
+            description: "tages associés à l'utilisateur"
+            type: array
+            items:
+              type: string
+      responses:
+        201:
+          description: "created"
+          schema:
+            type: object
+            properties:
+              username:
+                type: "string"
+            description: username de l'utilisateur créé
+        422:
+          description : "données invalides"
+          schema:
+            $ref: "#/definitions/Error"
+
+  /user/update:
+    post:
+      tags:
+        - "user"
+      summary: "Modification d'un utilisateur"
+      operationId: "updateUser"
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "_method"
+          in: "header"
+          description: "Pour gerer le put dans laravel : bug propre au framework => mettre put comme valeur"
+          required: true
+          type: string
+        - name: firstName
+          in: formData
+          type: string
+          description: "The firstname"
+          required: false
+        - name: lastName
+          in: formData
+          type: string
+          description: "The lastname"
+          required: false
+        - name: phone
+          in: formData
+          type: string
+          description: "The phone number"
+          required: false
+        - name: latitude
+          in: formData
+          type: number
+        - name: longitude
+          in: formData
+          type: number
+        - name: place
+          in: formData
+          type: string
+        - name: address
+          in: formData
+          type: string
+        - name: file
+          in: formData
+          type: file
+          description : "the avatar"
+        - name: url
+          in: formData
+          type: string
+          description: "url de l'avatar si dans bibliotheque (url ou fichier)"
+          required: false
+      responses:
+        200:
+          description: "successfull operation"
+        422:
+          description : "données invalides"
+          schema:
+            $ref: "#/definitions/Error"
+  /following:
+    get:
+      tags:
+        - "following"
+      summary: "Liste des personnes suivi par username"
+      operationId: "getFollowing"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "username"
+          description: "The name de celui qui est suvi"
+          required: true
+          type: "string"
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de following à recupérer (50 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de following à recupérer (0 par défaut)"
+      responses:
+        200:
+          description: "Nombre de folowing"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        401:
+          description: "Unauthorized."
+        404:
+          description: "User not found"
+  /count/following/{username}:
+    get:
+      tags:
+        - "following"
+      summary: "Nombre de follwing du username"
+      operationId: "getCountFollowing"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "username"
+          in: "path"
+          description: "The name de celui qui est suvi"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Nombre de folowing"
+          schema:
+            type: integer
+        401:
+          description: "Unauthorized."
+        404:
+          description: "User not found"
+
+  /follower:
+    get:
+      tags:
+        - "follower"
+      summary: "Liste des personnes suivant le username"
+      operationId: "getFollower"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "username"
+          description: "The name de celui qui est suvi"
+          required: true
+          type: "string"
+        - name: "limit"
+          in: "query"
+          description:  "nombre de follower à recupérer (50 par défaut)"
+          type: integer
+        - name: "offset"
+          in: "query"
+          description: "offset du nombre de follower à recupérer (0 par défaut)"
+          type: integer
+          required: true
+      responses:
+        200:
+          description: "Nombre de follower"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        401:
+          description: "Unauthorized."
+        404:
+          description: "User not found"
+  /count/follower/{username}:
+    get:
+      tags:
+        - "follower"
+      summary: "Nombre de follower du username"
+      operationId: "getCountFollower"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "username"
+          in: "path"
+          description: "The name de celui qui est suivi"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Nombre de follower"
+          schema:
+            type: integer
+        401:
+          description: "Unauthorized."
+        404:
+          description: "User not found"
+  /best/like/{idBest}:
+    post:
+      tags:
+        - "best"
+      summary: "Add a like"
+      operationId: "likeBest"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "idBest"
+          in: "path"
+          description: "id du best"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Nombre de like"
+          schema:
+            type: integer
+        401:
+          description: "Unauthorized."
+        404:
+          description: "Best not found"
+    delete:
+      tags:
+        - "best"
+      summary: "Supprime un like"
+      operationId: "dislikeBest"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "idBest"
+          in: "path"
+          description: "id du best"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Nombre de like"
+          schema:
+            type: integer
+        401:
+          description: "Unauthorized."
+        404:
+          description: "User not found"
+  /user/tags:
+    patch:
+      tags:
+        - "user"
+      summary: "Enregistrement des tags saisis par un user"
+      operationId: "saveTags"
+      consumes:
+        - application/json
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/TagsBody"
+      responses:
+        204:
+          description: 'no content'
+        422:
+          description : "données invalides"
+          schema:
+            $ref: "#/definitions/Error"
+  /user/tags/{username}:
+    get:
+      tags:
+        - "user"
+      summary: "Get tags for a usernames"
+      operationId: "getUserTags"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "username"
+          in: "path"
+          description: "The name"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/UserTags"
+        401:
+          description: "Unauthorized."
+        404:
+          description: "User not found"
+  /best:
+    post:
+      tags:
+        - "best"
+      summary: "Creation d'un best"
+      operationId: "createBest"
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: file
+          in: formData
+          type: file
+          description : "the image of the best"
+        - name: type
+          in: formData
+          type: string
+          description: "The type of the best : photo, lien,video,autre. image par défaut"
+          required: false
+        - name: title
+          in: formData
+          type: string
+          description: "The tile of the best"
+          required: true
+        - name: description
+          in: formData
+          type: string
+          description: "The description of the file"
+          required: true
+        - name: status
+          in: formData
+          type: string
+          enum: ["draft","to_publish"]
+          required: true
+          description: "status"
+        - name: url
+          in: formData
+          type: string
+          description: "url de l'image si dans bibliotheque (url ou fichier)"
+          required: false
+        - name: latitude
+          in: formData
+          type: number
+        - name: longitude
+          in: formData
+          type: number
+        - name: place
+          in: formData
+          type: string
+        - name: address
+          in: formData
+          type: string
+        - name:  category
+          in: formData
+          description: "tages associés au best"
+          type: array
+          items:
+            type: string
+      responses:
+        201:
+          description: "created"
+          schema:
+            $ref: "#/definitions/Best"
+        422:
+          description : "données invalides"
+          schema:
+            $ref: "#/definitions/Error"
+  /best/{idBest}:
+    post:
+      tags:
+        - "best"
+      summary: "Modification d'un best"
+      operationId: "updateBest"
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "_method"
+          in: "header"
+          description: "Pour gerer le put dans laravel : bug propre au framework => mettre put comme valeur"
+          required: true
+          type: string
+        - name: idBest
+          in: path
+          type: integer
+          required: true
+        - name: file
+          in: formData
+          type: file
+          description : "the image of the best"
+          required: false
+        - name: type
+          in: formData
+          type: string
+          description: "The type of the best : photo, lien,video,autre. image par défaut"
+          required: false
+        - name: title
+          in: formData
+          type: string
+          description: "The tile of the best"
+          required: false
+        - name: description
+          in: formData
+          type: string
+          description: "The description of the file"
+          required: false
+        - name: status
+          in: formData
+          type: string
+          enum: ["draft","to_publish"]
+          required: false
+          description: "status"
+        - name: url
+          in: formData
+          type: string
+          description: "url de l'image si dans bibliotheque (url ou fichier)"
+          required: false
+        - name: latitude
+          in: formData
+          type: number
+          required: false
+        - name: longitude
+          in: formData
+          type: number
+          required: false
+        - name: place
+          in: formData
+          type: string
+        - name: address
+          in: formData
+          type: string
+        - name:  category
+          in: formData
+          description: "tages associés au best"
+          required: false
+          type: array
+          items:
+            type: string
+      responses:
+        200:
+          description: "successfull operation"
+        422:
+          description : "données invalides"
+          schema:
+            $ref: "#/definitions/Error"
+    get:
+      tags:
+        - "best"
+      summary: "Get a best by idBest"
+      operationId: "getBest"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "idBest"
+          in: "path"
+          description: "The idBest that needs to be fetched."
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+        404:
+          description: "Best not found"
+    delete:
+      tags:
+        - "best"
+      summary: "Delete a best by idBest"
+      operationId: "deleteBest"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "idBest"
+          in: "path"
+          description: "The idBest to delete."
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+        401:
+          description: "Unauthorized."
+        404:
+          description: "Best not found"
+
+  /home/best:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of best"
+      operationId: "getHomeBest"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /home/best/bydate:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of best by publication date"
+      operationId: "getHomeBestByDate"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+
+  /bests:
+    get:
+      tags:
+        - "best"
+      summary: "Get a list of best of a user"
+      operationId: "getBests"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: query
+          name: username
+          required: true
+          type: string
+          description: username
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /draft/best:
+    get:
+      tags:
+        - "best"
+      summary: "Get a list draft of best of the connected user"
+      operationId: "getBestDraft"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de draft à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de draft à recupérer (0 par défaut)"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /suggestion/friend:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of suggestion of user"
+      operationId: "getSuggestionFriend"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de user à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de user à recupérer (0 par défaut)"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        401:
+          description: "Unauthorized."
+  /suggestion/theme:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of category"
+      operationId: "getSuggestionTheme"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de category à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de category à recupérer (0 par défaut)"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Theme"
+        401:
+          description: "Unauthorized."
+
+  /top/like/{idTop}:
+    post:
+      tags:
+        - "top"
+      summary: "Add a like"
+      operationId: "likeTop"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "idTop"
+          in: "path"
+          description: "id du top"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Nombre de like"
+          schema:
+            type: integer
+        401:
+          description: "Unauthorized."
+        404:
+          description: "Best not found"
+    delete:
+      tags:
+        - "top"
+      summary: "Supprime un like"
+      operationId: "dislikeTop"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - name: "idTop"
+          in: "path"
+          description: "id du top"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Nombre de like"
+          schema:
+            type: integer
+        401:
+          description: "Unauthorized."
+        404:
+          description: "User not found"
+  /best/bycategory/all:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of best (possedant une category)"
+      operationId: "getBestByCategoryAll"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+        - in: "query"
+          name: "category"
+          type: string
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /best/bybest/all:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of best (ressemblant à un best)"
+      operationId: "getBestByBestAll"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+        - in: "query"
+          name: "idBest"
+          type: integer
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /best/bycategory/friends:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of best of my friends (possedant une category)"
+      operationId: "getBestByCategoryFriends"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+        - in: "query"
+          name: "category"
+          type: string
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /best/bybest/friends:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of best of my friends (ressemblant à un best)"
+      operationId: "getBestByBestFriends"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+        - in: "query"
+          name: "idBest"
+          type: integer
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /best/bycategory/my:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of best of my best and like (possedant une category)"
+      operationId: "getBestByCategoryMy"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+        - in: "query"
+          name: "category"
+          type: string
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /best/bybest/my:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of best of my best and like (ressemblant à un best)"
+      operationId: "getBestByBestMy"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+        - in: "query"
+          name: "idBest"
+          type: integer
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /best/bycategory/around:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of best around a position  (possedant une category)"
+      operationId: "getBestByCategoryAround"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+        - in: "query"
+          name: "category"
+          type: string
+          required: true
+        - in: query
+          name: latitude
+          type: integer
+        - in: query
+          name: longitude
+          type: integer
+        - in: query
+          name: distance
+          type: integer
+          description: distance de la recherche autour du point en km
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /best/bybest/around:
+    get:
+      tags:
+        - "flux"
+      summary: "Get a ordered list of best aound a position (ressemblant à un best)"
+      operationId: "getBestByBestAround"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+        - in: "query"
+          name: "idBest"
+          type: integer
+          required: true
+        - in: query
+          name: latitude
+          type: integer
+        - in: query
+          name: longitude
+          type: integer
+        - in: query
+          name: distance
+          type: integer
+          description: distance de la recherche autour du point en km
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+  /find/best:
+    get:
+      tags:
+        - "Find"
+      summary: "Find a ordered list of best by criteria"
+      operationId: "FindBest"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "Accept"
+          in: "header"
+          description: "application/vnd.wooz_best.v1+json"
+          required: true
+          type: "string"
+        - name: "guid"
+          in: "header"
+          description: "The guid for login"
+          required: true
+          type: "string"
+        - name: "token"
+          in: "header"
+          description: "The session token"
+          required: true
+          type: string
+        - in: "query"
+          name: "limit"
+          type: integer
+          description: "nombre de best à recupérer (10 par défaut)"
+          required: false
+        - in: "query"
+          name: "offset"
+          type: integer
+          description: "offset du nombre de best à recupérer (0 par défaut)"
+        - in: "query"
+          name: "q"
+          type: string
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Best"
+        401:
+          description: "Unauthorized."
+
+definitions:
+  User:
+    type: "object"
+    required:
+      - "username"
+      - "email"
+      - "guid"
+    properties:
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      guid:
+        type: "string"
+      phone:
+        type: "string"
+      userStatus:
+        type: "string"
+      celebrity:
+        type: "integer"
+        description: "niveau de célébrité"
+      longitude:
+        type: number
+      latitude:
+        type: number
+      place:
+        type: string
+      address:
+        type: string
+      following:
+        type: boolean
+        description: "Ce user suit le user loggué"
+      follower:
+        type: boolean
+        description: "Le user loggué suit ce user"
+      best:
+        type: "integer"
+        description : "nombre de best publie"
+      url_image:
+        type: string
+      tags:
+        $ref: "#/definitions/UserTags"
+
+  Best:
+    type: "object"
+    required:
+      - "title"
+      - "description"
+      - "idBest"
+    properties:
+      idBest:
+        type: "integer"
+      type:
+        type: "string"
+        description: photo, video, lien, autre
+      title:
+        type: "string"
+      description:
+        type: "string"
+      like:
+        type: "integer"
+        description : "nombre de like"
+      like_by_me:
+        type: boolean
+        description: L'utilisateur connecté a liké ou non le best
+      longitude:
+        type: number
+      latitude:
+        type: number
+      place:
+        type: string
+      address:
+        type: string
+      last_like_date:
+        type: string
+        format: date-time
+      published:
+        type: boolean
+      publication_date:
+        type: string
+        format: date-time
+      url_image:
+        type: string
+      url:
+        type: array
+        items:
+          type: string
+      category:
+        type: array
+        items:
+          type: string
+      tag:
+        type: array
+        items:
+          type: string
+      cashtag:
+        type: array
+        items:
+          type: string
+      mention:
+        type: array
+        items:
+          type: string
+      user:
+        $ref: "#/definitions/User"
+
+  TagsBody:
+    type: "object"
+    properties:
+      tags:
+        type: array
+        items:
+          type: string
+        description : "max 45 caracteres"
+  UserTags:
+    type: array
+    items:
+      type: object
+      properties:
+        tag:
+          type: string
+        type:
+          type: string
+          description: utilisateur ou calcule
+  Theme:
+    type: "object"
+    properties:
+      theme:
+        type: string
+      user:
+        $ref: "#/definitions/User"
+
+  Error:
+    type: "object"
+    properties:
+      status_code:
+        type: "integer"
+        format: "int8"
+      message:
+        type: "string"
+      errors:
+        type: "object"
+        properties:
+          username:
+            type: "array"
+            items:
+              type: "string"
+          firstName:
+            type: "array"
+            items:
+              type: "string"
+          lastName:
+            type: "array"
+            items:
+              type: "string"
+          email:
+            type: "array"
+            items:
+              type: "string"
+          phone:
+            type: "array"
+            items:
+              type: "string"
+          password:
+            type: "array"
+            items:
+              type: "string"
+
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

@@ -1,0 +1,2836 @@
+{
+	"info": {
+		"_postman_id": "171a2254-b435-4f68-8b30-ef610ed9c0f8",
+		"name": "woozbest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"description": null,
+			"item": [
+				{
+					"name": "user/login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test3@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "testtest",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/user/login",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user/check_login",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "361f3525672260f12ee8448b553b3cb7de60e66fac708d93c63d5b3caeb31bbf"
+							},
+							{
+								"key": "guid",
+								"value": "2"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "api.wooz.best.local/user/check_login",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"user",
+								"check_login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "testImage2@test.com",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "password",
+									"value": "testtest",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "username",
+									"value": "avatar2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "firstName",
+									"value": "eeee",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "lastName",
+									"value": "zzzzzzcdsd",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/user",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "85173094624826e6b9d8bc71379fb373bc3f7d7d6f4995460e8c2e1c0b8cbd5d"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "_method",
+								"value": "put"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "first",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "lestName",
+									"value": "lastName",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0130595213",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/user/update",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user/logout",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "guid",
+								"value": "2"
+							},
+							{
+								"key": "token",
+								"value": "361f3525672260f12ee8448b553b3cb7de60e66fac708d93c63d5b3caeb31bbf"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/user/logout",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user/{username}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "f8c303a6b76716a1ad8dfeadb66ea700f53e6401830f46a72b8e95731505907b"
+							},
+							{
+								"key": "guid",
+								"value": "47099f9c-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/user/aaa",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"user",
+								"aaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user getFollowing",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "f8c303a6b76716a1ad8dfeadb66ea700f53e6401830f46a72b8e95731505907b"
+							},
+							{
+								"key": "guid",
+								"value": "47099f9c-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/following?username=aaa2&limit=10&offset=0",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"following"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "aaa2"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user getFollower",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "f8c303a6b76716a1ad8dfeadb66ea700f53e6401830f46a72b8e95731505907b"
+							},
+							{
+								"key": "guid",
+								"value": "47099f9c-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/follower?username=aaa2&?limit=50&offset=0",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"follower"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "aaa2"
+								},
+								{
+									"key": "?limit",
+									"value": "50"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user count following",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "448dff8dd05474b8a4d26d8afc5abe2e412f02656ea5f1201c411a9cabc7ce0b"
+							},
+							{
+								"key": "guid",
+								"value": "47099f9c-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/count/following/aaa1",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"count",
+								"following",
+								"aaa1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user count follower",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "448dff8dd05474b8a4d26d8afc5abe2e412f02656ea5f1201c411a9cabc7ce0b"
+							},
+							{
+								"key": "guid",
+								"value": "47099f9c-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/count/follower/aaa2",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"count",
+								"follower",
+								"aaa2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user follow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "448dff8dd05474b8a4d26d8afc5abe2e412f02656ea5f1201c411a9cabc7ce0b"
+							},
+							{
+								"key": "guid",
+								"value": "47099f9c-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/user/follow/aaa2",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"user",
+								"follow",
+								"aaa2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user save tags",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "b5f6f5c5056b908d1e0c3116cc1c861bb1d558ac5f3299dc2aac819547df7301"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tags\":[\"   ee   -   \",\"ee            dd\",\"  ddd  \",\"tevnnis\",\"<h1>dddcvvvcdd  </h1>\",\"<h2>a</h2>\"]}"
+						},
+						"url": {
+							"raw": "api.wooz.best.local/user/tags",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"user",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user get tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "448dff8dd05474b8a4d26d8afc5abe2e412f02656ea5f1201c411a9cabc7ce0b"
+							},
+							{
+								"key": "guid",
+								"value": "47099f9c-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tags\":[\"ee\",\"ee\",\"ddd\",\"ssggggggggggggggggggggggggg\"]}"
+						},
+						"url": {
+							"raw": "api.wooz.best.local/user/tags/aaa",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"user",
+								"tags",
+								"aaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user unfollow",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "448dff8dd05474b8a4d26d8afc5abe2e412f02656ea5f1201c411a9cabc7ce0b"
+							},
+							{
+								"key": "guid",
+								"value": "47099f9c-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/user/follow/aaa2",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"user",
+								"follow",
+								"aaa2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Best",
+			"description": null,
+			"item": [
+				{
+					"name": "Like best",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "b8f891704c29ce35249c8fc304dffafe3ed455f8af14ae5891e4e1e3544c0c19"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/like/2",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"like",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dislike best",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "448dff8dd05474b8a4d26d8afc5abe2e412f02656ea5f1201c411a9cabc7ce0b"
+							},
+							{
+								"key": "guid",
+								"value": "47099f9c-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/like/1",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"like",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create best",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "a7e292715a4c99e9a85606809202dc21aa872927bd71df63904bb86ca76a137e"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @payalba #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "to_publish",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update best",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "a7e292715a4c99e9a85606809202dc21aa872927bd71df63904bb86ca76a137e"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/1",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get best",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "a7e292715a4c99e9a85606809202dc21aa872927bd71df63904bb86ca76a137e"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/2",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get bests",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "a7e292715a4c99e9a85606809202dc21aa872927bd71df63904bb86ca76a137e"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/bests?username=aaa2&offset=0&limit=5",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"bests"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "aaa2"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get draft best",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "a7e292715a4c99e9a85606809202dc21aa872927bd71df63904bb86ca76a137e"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/draft/best?offset=0&limit=1",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"draft",
+								"best"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Top",
+			"description": "",
+			"item": [
+				{
+					"name": "Like top",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "c299b661def2156f50daf2db2ba7fef2d3932f4cb19800f0734a8bea3868abe0"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/top",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"top"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dislike top",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "448dff8dd05474b8a4d26d8afc5abe2e412f02656ea5f1201c411a9cabc7ce0b"
+							},
+							{
+								"key": "guid",
+								"value": "47099f9c-61d0-11e8-bd14-00e04c680ee1"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/top/like/1",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"top",
+								"like",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "flux",
+			"description": "",
+			"item": [
+				{
+					"name": "get home best",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "a2fce7309d431a7a93ed65e95092d858c5b6fbb04419a20522d4566099bcd34e"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local./home/best",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"home",
+								"best"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get home best by date",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "a2fce7309d431a7a93ed65e95092d858c5b6fbb04419a20522d4566099bcd34e"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local./home/best/bydate",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"home",
+								"best",
+								"bydate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get best bybest all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "22188fad6a0dbfb0dd14283c0d9bf59ffd864e5672dae7e796e544cbc89ce829"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/bybest/all?idBest=1&offset=0&limit=10",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"bybest",
+								"all"
+							],
+							"query": [
+								{
+									"key": "idBest",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get best bybest friends",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "22188fad6a0dbfb0dd14283c0d9bf59ffd864e5672dae7e796e544cbc89ce829"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/bybest/friends?idBest=1&offset=0&limit=10",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"bybest",
+								"friends"
+							],
+							"query": [
+								{
+									"key": "idBest",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get best bybest my",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "22188fad6a0dbfb0dd14283c0d9bf59ffd864e5672dae7e796e544cbc89ce829"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/bybest/my?idBest=1&offset=0&limit=10",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"bybest",
+								"my"
+							],
+							"query": [
+								{
+									"key": "idBest",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get best bybest around",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "22188fad6a0dbfb0dd14283c0d9bf59ffd864e5672dae7e796e544cbc89ce829"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/bybest/around?idBest=1&offset=0&limit=10&distance=1000&latitude=1&longitude=0.2",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"bybest",
+								"around"
+							],
+							"query": [
+								{
+									"key": "idBest",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "distance",
+									"value": "1000"
+								},
+								{
+									"key": "latitude",
+									"value": "1"
+								},
+								{
+									"key": "longitude",
+									"value": "0.2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get best bycategory all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "22188fad6a0dbfb0dd14283c0d9bf59ffd864e5672dae7e796e544cbc89ce829"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/bycategory/all?category=test&offset=0&limit=10",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"bycategory",
+								"all"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "test"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get best bycategory friends",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "22188fad6a0dbfb0dd14283c0d9bf59ffd864e5672dae7e796e544cbc89ce829"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/bycategory/friends?category=test&offset=0&limit=10",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"bycategory",
+								"friends"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "test"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get best bycategory my",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "22188fad6a0dbfb0dd14283c0d9bf59ffd864e5672dae7e796e544cbc89ce829"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/bycategory/my?category=test&offset=0&limit=10",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"bycategory",
+								"my"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "test"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get best bycategory aound",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "22188fad6a0dbfb0dd14283c0d9bf59ffd864e5672dae7e796e544cbc89ce829"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/best/bycategory/all?category=test&offset=0&limit=10&distance=1000&latitude=1&longitude=0.2",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"best",
+								"bycategory",
+								"all"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "test"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "distance",
+									"value": "1000"
+								},
+								{
+									"key": "latitude",
+									"value": "1"
+								},
+								{
+									"key": "longitude",
+									"value": "0.2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get suggestion friend",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "a7e292715a4c99e9a85606809202dc21aa872927bd71df63904bb86ca76a137e"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/suggestion/friend?offset=0&limit=10",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"suggestion",
+								"friend"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get suggestion theme",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.wooz_best.v1+json"
+							},
+							{
+								"key": "token",
+								"value": "a7e292715a4c99e9a85606809202dc21aa872927bd71df63904bb86ca76a137e"
+							},
+							{
+								"key": "guid",
+								"value": "80970036-61d0-11e8-bd14-00e04c680ee1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "titre @aa3 #test $aaa @abc/def",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dddd @aaa http://test.com  testurl.com ddd",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "category[0]",
+									"value": "test vv",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category[1]",
+									"value": "   test ddd ddddd   ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "1.1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "1.2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "draft",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "api.wooz.best.local/suggestion/theme?offset=0&limit=10",
+							"host": [
+								"api",
+								"wooz",
+								"best",
+								"local"
+							],
+							"path": [
+								"suggestion",
+								"theme"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.wooz_best.v1+json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file"
+						},
+						{
+							"key": "titre",
+							"value": "titre",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "description",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "latitude",
+							"value": "0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "longitude",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "tags[0]",
+							"value": "tags1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "tags[1]",
+							"value": "tags2",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "api.wooz.best.local/test",
+					"host": [
+						"api",
+						"wooz",
+						"best",
+						"local"
+					],
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

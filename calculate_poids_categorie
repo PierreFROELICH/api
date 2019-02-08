@@ -1,0 +1,2 @@
+#!/bin/bash
+php artisan calculate:poids_categorie >/dev/null 2>&1

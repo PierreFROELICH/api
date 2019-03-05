@@ -186,7 +186,7 @@ class UserController extends ApiController
         $name = $request->input('url');
         if ($request->file('avatar')->isValid() && $request->hasFile('avatar')) {
 
-            $name = bin2hex(random_bytes(32)).'.'.$extension;
+            $name = bin2hex(random_bytes(32));
 
             //@todo : on pose le fichier sur le ftp
             if (env('DEPOT_IMAGE_DRIVER')) {

@@ -184,15 +184,15 @@ class UserController extends ApiController
     {
         //@todo : refactoriser ftp
         $name = $request->input('url');
-        if ($request->has('file') && !empty($request->input('file'))) {
+        if ($request->file('avatar')->isValid() && $request->hasFile('avatar')) {
 
-            $name = ImageHelper::saveFromBase64($request->input('file'), 'DEPOT_AVATAR_TEMP');
-            $file = storage_path(env('DEPOT_IMAGE_TEMP')) . '/' . $name;
+            $name = bin2hex(random_bytes(32)).'.'.$extension;
 
             //@todo : on pose le fichier sur le ftp
             if (env('DEPOT_IMAGE_DRIVER')) {
                 //faire le depot du fichier
-                Config::set(
+                $request->file('avatar')->move(DEPOT_AVATAR_REP)
+                /*Config::set(
                     'filesystems.disks.depot_image',
                     Config::get('depot.image')
                 );
@@ -214,7 +214,7 @@ class UserController extends ApiController
                         env('DEPOT_AVATAR_REP') . "/" . $name,
 
                         \file_get_contents($file)
-                    );
+                    );*/
 
 
             }
